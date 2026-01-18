@@ -7,6 +7,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dalamud", "dalamud", "{3F5C
 		ViperSwap\ViperSwap.json = ViperSwap\ViperSwap.json
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{92B4A77D-0958-4D4D-9832-CE68105D8097}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\update.yml = .github\workflows\update.yml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

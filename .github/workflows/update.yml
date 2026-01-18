@@ -1,0 +1,67 @@
+name: Update Plugin Repo
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+
+      - name: Setup build tools
+        uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: '9.x'
+
+      - name: Fetch dalamud dependencies
+        run: |
+          Invoke-WebRequest -Uri https://goatcorp.github.io/dalamud-distrib/latest.zip -OutFile dalamud.zip
+          Expand-Archive -Force dalamud.zip "$env:AppData\XIVLauncher\addon\Hooks\dev\"
+
+      - name: Fetch nuget dependencies
+        run: dotnet restore
+
+      - name: Build solution
+        run: dotnet build -c Release
+
+      - name: Upload built package
+        uses: actions/upload-artifact@v4
+        with:
+          name: dalamud-package
+          path: ViperSwap/bin/x64/Release/ViperSwap/*
+          if-no-files-found: error
+
+      - name: Release package update
+        uses: softprops/action-gh-release@v2
+        with:
+          files: ViperSwap/bin/x64/Release/ViperSwap/latest.zip
+          draft: false
+          prerelease: false
+
+  publish:
+    needs: build
+    runs-on: windows-latest
+    steps:
+      - name: Checkout plugin repo
+        uses: actions/checkout@v6
+        with:
+          repository: mousseng/DalamudPlugins
+          ref: main
+          token: ${{ secrets.pat }} # this sets the permissions for add-and-commit
+
+      - name: Download built package
+        uses: actions/download-artifact@v4
+        with:
+          name: dalamud-package
+          path: plugins/ViperSwap/
+
+      - name: Commit package update
+        uses: EndBug/add-and-commit@v9
+        with:
+          add: plugins/ViperSwap/*
+          author_name: GitHub Action
+          author_email: github-actions[bot]@users.noreply.github.com
+          message: omgcombo ${{ github.ref_name }}
