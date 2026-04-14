@@ -10,9 +10,8 @@ namespace ViperSwap;
 public sealed class Plugin : IDalamudPlugin
 {
     [PluginService] private static ICommandManager CommandManager { get; set; } = null!;
-    [PluginService] private static IGameGui Gui { get; set; } = null!;
-    [PluginService] internal static IChatGui Chat { get; private set; } = null!;
-    [PluginService] internal static IPluginLog Log { get; private set; } = null!;
+    [PluginService] private static IChatGui Chat { get; set; } = null!;
+    [PluginService] private static IPluginLog Log { get; set; } = null!;
 
     public Plugin()
     {
@@ -29,6 +28,7 @@ public sealed class Plugin : IDalamudPlugin
         var args = arguments.Split(' ', StringSplitOptions.RemoveEmptyEntries);
         if (args.Length != 3)
         {
+            Log.Warning("3 args required: macro id, hotbar id, slot id");
             Chat.Print("[vswap] 3 args required: macro id, hotbar id, slot id");
             return;
         }
@@ -59,8 +59,9 @@ public sealed class Plugin : IDalamudPlugin
                 false,
                 false);
         }
-        catch
+        catch (Exception e)
         {
+            Log.Error(e, "Ran into an error");
             Chat.Print("[vswap] Ran into an error");
         }
     }
