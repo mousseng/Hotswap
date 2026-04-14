@@ -64,4 +64,4 @@ jobs:
           add: plugins/Hotswap/*
           author_name: GitHub Action
           author_email: github-actions[bot]@users.noreply.github.com
-          message: omgcombo ${{ github.ref_name }}
+          message: hotswap ${{ github.ref_name }}
