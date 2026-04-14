@@ -1,10 +1,10 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViperSwap", "ViperSwap\ViperSwap.csproj", "{87DD4B5C-6406-4702-90C5-AE2483D86DAF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hotswap", "Hotswap\Hotswap.csproj", "{87DD4B5C-6406-4702-90C5-AE2483D86DAF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dalamud", "dalamud", "{3F5CAC89-B29E-41B4-A517-0A4CF469ACAF}"
 	ProjectSection(SolutionItems) = preProject
-		ViperSwap\ViperSwap.json = ViperSwap\ViperSwap.json
+		Hotswap\Hotswap.json = Hotswap\Hotswap.json
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{92B4A77D-0958-4D4D-9832-CE68105D8097}"

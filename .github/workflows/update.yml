@@ -31,13 +31,13 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: dalamud-package
-          path: ViperSwap/bin/x64/Release/ViperSwap/*
+          path: Hotswap/bin/x64/Release/Hotswap/*
           if-no-files-found: error
 
       - name: Release package update
         uses: softprops/action-gh-release@v2
         with:
-          files: ViperSwap/bin/x64/Release/ViperSwap/latest.zip
+          files: Hotswap/bin/x64/Release/Hotswap/latest.zip
           draft: false
           prerelease: false
 
@@ -56,12 +56,12 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: dalamud-package
-          path: plugins/ViperSwap/
+          path: plugins/Hotswap/
 
       - name: Commit package update
         uses: EndBug/add-and-commit@v9
         with:
-          add: plugins/ViperSwap/*
+          add: plugins/Hotswap/*
           author_name: GitHub Action
           author_email: github-actions[bot]@users.noreply.github.com
           message: omgcombo ${{ github.ref_name }}

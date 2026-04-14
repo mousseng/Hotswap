@@ -5,7 +5,7 @@ using Dalamud.Plugin.Services;
 using FFXIVClientStructs.FFXIV.Client.UI.Misc;
 using FFXIVClientStructs.Interop;
 
-namespace ViperSwap;
+namespace Hotswap;
 
 public sealed class Plugin : IDalamudPlugin
 {
@@ -15,12 +15,12 @@ public sealed class Plugin : IDalamudPlugin
 
     public Plugin()
     {
-        CommandManager.AddHandler("/vswap", new CommandInfo(DoSwap));
+        CommandManager.AddHandler("/hotswap", new CommandInfo(DoSwap));
     }
 
     public void Dispose()
     {
-        CommandManager.RemoveHandler("/vswap");
+        CommandManager.RemoveHandler("/hotswap");
     }
 
     private static unsafe void DoSwap(string command, string arguments)
@@ -29,7 +29,7 @@ public sealed class Plugin : IDalamudPlugin
         if (args.Length != 3)
         {
             Log.Warning("3 args required: macro id, hotbar id, slot id");
-            Chat.Print("[vswap] 3 args required: macro id, hotbar id, slot id");
+            Chat.Print("[hotswap] 3 args required: macro id, hotbar id, slot id");
             return;
         }
 
@@ -62,7 +62,7 @@ public sealed class Plugin : IDalamudPlugin
         catch (Exception e)
         {
             Log.Error(e, "Ran into an error");
-            Chat.Print("[vswap] Ran into an error");
+            Chat.Print("[hotswap] Ran into an error");
         }
     }
 }
