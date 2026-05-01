@@ -1,7 +1,7 @@
 {
   "Author": "lin",
   "Name": "Hotswap",
-  "Punchline": "Like /hotbar but it lets you set macros",
-  "Description": "Like /hotbar but it lets you set macros",
+  "Punchline": "Like /hotbar but for macros",
+  "Description": "Like /hotbar but for macros",
   "ApplicableVersion": "any"
 }
